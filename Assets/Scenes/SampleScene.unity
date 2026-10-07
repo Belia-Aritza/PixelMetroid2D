@@ -628,6 +628,7 @@ GameObject:
   - component: {fileID: 720282342}
   - component: {fileID: 720282344}
   - component: {fileID: 720282343}
+  - component: {fileID: 720282345}
   m_Layer: 0
   m_Name: player-idle-1
   m_TagString: Untagged
@@ -773,6 +774,19 @@ CapsuleCollider2D:
   m_Offset: {x: -0.070463836, y: -0.25574887}
   m_Size: {x: 1.2648104, y: 2.5208704}
   m_Direction: 0
+--- !u!114 &720282345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720282340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92be0c129cee2590ba3a1f9afbc46ec0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ControlJugadorInputSystemOld
+  velocidad: 3
 --- !u!1 &790652350
 GameObject:
   m_ObjectHideFlags: 0
