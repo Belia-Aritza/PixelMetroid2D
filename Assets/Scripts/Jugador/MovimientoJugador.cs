@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,7 +6,21 @@ using UnityEngine.InputSystem;
 
 public class MovimientoJugador : MonoBehaviour
 {
+    [Header("Movimiento")]
     public float velocity;
+    [SerializeField]private InputActionReference accionMover;
+
+    [Header("Salto")]
+    [SerializeField]private InputActionReference accionSaltar;
+    //fuerza aplicada al saltar
+    public float fuerzaImpulso = 5;
+    private Boolean saltoPendiente;
+    private Boolean estaTocandoSuelo;
+    private float logitudRayCast = 1f;
+    [SerializeField] private LayerMask mascaraSuelo;
+
+
+
 
     private Rigidbody2D fisica;
 
@@ -13,8 +28,7 @@ public class MovimientoJugador : MonoBehaviour
 
 
     //Para acceder al mapa de acciones del inputAction.
-    [SerializeField]private InputActionReference accionMover;
-
+    
     //Se ejecuta cuando el script este en la escena, se usa cuando tiene que acceder otro gameObject distinto al que tiene el script
     //ejemplo los sonidos
     private void Awake()
@@ -33,6 +47,13 @@ public class MovimientoJugador : MonoBehaviour
     void Update()
     {
         entradaX = accionMover.action.ReadValue<Vector2>();
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, logitudRayCast, mascaraSuelo);
+
+        if (accionSaltar.action.WasPressedThisFrame())
+        {
+            saltoPendiente = true;
+        }
     }
 
     private void OnEnable()
@@ -44,6 +65,14 @@ public class MovimientoJugador : MonoBehaviour
             return;
         }
         accionMover.action.Enable();
+
+        if ((accionSaltar == null) || accionSaltar.action == null)
+        {
+            Debug.LogError("Asigna Mapa de acción Jugador/Saltar en Acción Saltar");
+            enabled = false;
+            return;
+        }
+        accionSaltar.action.Enable();
     }
 
     private void OnDisable()
@@ -53,12 +82,26 @@ public class MovimientoJugador : MonoBehaviour
             accionMover.action.Disable();
         }
 
+        if ((accionSaltar != null) && (accionSaltar.action != null))
+        {
+            accionSaltar.action.Disable();
+        }
         
     }
 
+    //Todo lo que sea fisica se pone en el fixed update.
     void FixedUpdate()
     {
         fisica.linearVelocity = new Vector2(entradaX.x * velocity, fisica.linearVelocity.y);
+
+        if (saltoPendiente && estaTocandoSuelo){
+            fisica.AddForce(Vector2.up * fuerzaImpulso, ForceMode2D.Impulse);
+
+        }
+        saltoPendiente = false;
+        
+    
+    
     }
 
 }

@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 52410222}
   - component: {fileID: 52410221}
   - component: {fileID: 52410223}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: tileset-sliced_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,12 +204,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 52410220}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5, y: -1.5, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.07942, y: -1.71474, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 608571973}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &52410223
 BoxCollider2D:
@@ -394,6 +394,43 @@ Transform:
   m_Children: []
   m_Father: {fileID: 720282341}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &608571972
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 608571973}
+  m_Layer: 6
+  m_Name: Suelo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &608571973
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608571972}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.42058, y: 0.21474, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 693364006}
+  - {fileID: 1426288700}
+  - {fileID: 1144063096}
+  - {fileID: 52410222}
+  - {fileID: 2062601119}
+  - {fileID: 1780443015}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,7 +526,7 @@ GameObject:
   - component: {fileID: 693364006}
   - component: {fileID: 693364005}
   - component: {fileID: 693364007}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: tileset-sliced_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,12 +600,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 693364004}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: -1.5, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.92058, y: -1.71474, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 608571973}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &693364007
 BoxCollider2D:
@@ -867,6 +904,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MovimientoJugador
   velocity: 3
   accionMover: {fileID: -2857088042824095909, guid: 2b87aef68afbfa4eb87b54d22e42e164, type: 3}
+  accionSaltar: {fileID: 2868807647586500232, guid: 2b87aef68afbfa4eb87b54d22e42e164, type: 3}
+  fuerzaImpulso: 5
+  mascaraSuelo:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &790652350
 GameObject:
   m_ObjectHideFlags: 0
@@ -910,7 +952,7 @@ GameObject:
   - component: {fileID: 1144063096}
   - component: {fileID: 1144063095}
   - component: {fileID: 1144063097}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: tileset-sliced_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -984,12 +1026,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1144063094}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -1.5, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.07942, y: -1.71474, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 608571973}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1144063097
 BoxCollider2D:
@@ -1048,7 +1090,7 @@ GameObject:
   - component: {fileID: 1426288700}
   - component: {fileID: 1426288699}
   - component: {fileID: 1426288701}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: tileset-sliced_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1122,12 +1164,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1426288698}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5, y: -1.5, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.07942, y: -1.71474, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 608571973}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1426288701
 BoxCollider2D:
@@ -1186,7 +1228,7 @@ GameObject:
   - component: {fileID: 1780443015}
   - component: {fileID: 1780443014}
   - component: {fileID: 1780443016}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: tileset-sliced_0 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1260,12 +1302,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780443013}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.5, y: -1.5, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.07942, y: -1.71474, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 608571973}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1780443016
 BoxCollider2D:
@@ -1324,7 +1366,7 @@ GameObject:
   - component: {fileID: 2062601119}
   - component: {fileID: 2062601118}
   - component: {fileID: 2062601120}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: tileset-sliced_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1398,12 +1440,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2062601117}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: -1.5, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.07942, y: -1.71474, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 608571973}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2062601120
 BoxCollider2D:
@@ -1457,9 +1499,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 619394802}
   - {fileID: 790652351}
-  - {fileID: 693364006}
-  - {fileID: 1426288700}
-  - {fileID: 1144063096}
-  - {fileID: 52410222}
-  - {fileID: 2062601119}
-  - {fileID: 1780443015}
+  - {fileID: 608571973}
