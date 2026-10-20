@@ -16,8 +16,8 @@ public class MovimientoJugador : MonoBehaviour
     public float fuerzaImpulso = 5;
     private Boolean saltoPendiente;
     private Boolean estaTocandoSuelo;
-    private float logitudRayCast = 1f;
-    [SerializeField] private LayerMask mascaraSuelo;
+    private float logitudRayCast = 1.6f;
+    [SerializeField] private LayerMask capaSuelo;
 
 
 
@@ -48,9 +48,14 @@ public class MovimientoJugador : MonoBehaviour
     {
         entradaX = accionMover.action.ReadValue<Vector2>();
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, logitudRayCast, mascaraSuelo);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, logitudRayCast, capaSuelo);
 
-        if (accionSaltar.action.WasPressedThisFrame())
+        estaTocandoSuelo = hit.collider != null;
+
+        Color colorRayo = estaTocandoSuelo ? Color.green : Color.red;
+        Debug.DrawRay(transform.position, Vector2.down * logitudRayCast, colorRayo);
+
+        if (accionSaltar.action.WasPressedThisFrame() && estaTocandoSuelo)
         {
             saltoPendiente = true;
         }
