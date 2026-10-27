@@ -12,19 +12,22 @@ public class MovimientoJugador : MonoBehaviour
 
     [Header("Salto")]
     [SerializeField]private InputActionReference accionSaltar;
-    //fuerza aplicada al saltar
-    public float fuerzaImpulso = 5;
-    private Boolean saltoPendiente;
-    private Boolean estaTocandoSuelo;
-    private float logitudRayCast = 1.6f;
     [SerializeField] private LayerMask capaSuelo;
-
-
+    //fuerza aplicada al saltar
+    public float fuerzaImpulso = 5f;
+    
+    
 
 
     private Rigidbody2D fisica;
-
+    
+    private SpriteRenderer renderizador;
+    private Animator animador;
     private Vector2 entradaX;
+    private Boolean saltoPendiente;
+    private Boolean estaTocandoSuelo;
+    private float logitudRayCast = 1.6f;
+    private float umbralCarrera = 0.1f;
 
 
     //Para acceder al mapa de acciones del inputAction.
@@ -34,6 +37,8 @@ public class MovimientoJugador : MonoBehaviour
     private void Awake()
     {
         fisica = GetComponent<Rigidbody2D>();
+        renderizador = GetComponent<SpriteRenderer>();
+        animador = GetComponent<Animator>();
         
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -58,6 +63,29 @@ public class MovimientoJugador : MonoBehaviour
         if (accionSaltar.action.WasPressedThisFrame() && estaTocandoSuelo)
         {
             saltoPendiente = true;
+        }
+
+        animarJugador();
+    }
+
+    private void animarJugador()
+    {
+        if (animador == null)
+        {
+            return;
+        }
+
+        if (!estaTocandoSuelo)
+        {
+            animador.Play("JugadorSaltando");
+        }
+        else if (Mathf.Abs(fisica.linearVelocity.x) > umbralCarrera)
+        {
+            animador.Play("JugadorCorriendo");
+        } 
+        else
+        {
+            animador.Play("JugadorParado");
         }
     }
 
@@ -105,8 +133,26 @@ public class MovimientoJugador : MonoBehaviour
         }
         saltoPendiente = false;
         
+        OrientarSprite();
     
     
     }
 
+    private void OrientarSprite()
+    {
+        if (renderizador == null)
+        {
+            return;
+        }
+
+        //gira si va hacia la izquierda
+        if (fisica.linearVelocity.x > 0)
+        {
+            renderizador.flipX = false;
+        }
+        else if (fisica.linearVelocity.x < 0)
+        {
+            renderizador.flipX = true;
+        }
+    }
 }

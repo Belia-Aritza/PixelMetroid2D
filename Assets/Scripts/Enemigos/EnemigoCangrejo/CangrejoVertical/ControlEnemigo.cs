@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class ControlEnemigo : MonoBehaviour
+public class ControlEnemigoCangrejoHorizontal : MonoBehaviour
 {
     [Header("Movimiento")]
     public float velocidad = 2f;
