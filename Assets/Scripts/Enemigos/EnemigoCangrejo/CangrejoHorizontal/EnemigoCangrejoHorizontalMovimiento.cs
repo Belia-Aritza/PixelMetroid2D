@@ -7,7 +7,7 @@ public class EnemigoCangrejoHorizontalMovimiento : MonoBehaviour
     public float velocidad = 2f;
     public Vector2 posicionFinal;
     private Vector2 posicionInicial;
-    private bool movimientoHaciaLosLados = true;
+    private bool movimientoHaciaLaDerecha = true;
     [SerializeField] private float tolerancia = 0.01f;
 
 
@@ -16,6 +16,8 @@ public class EnemigoCangrejoHorizontalMovimiento : MonoBehaviour
     [Header("Animacion")]
     private SpriteRenderer renderizador;
     private Animator animador;
+    private bool estaTocandoSuelo;
+    private float umbralCarrera = 0.1f;
 
     void Awake()
     {
@@ -33,29 +35,18 @@ public class EnemigoCangrejoHorizontalMovimiento : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // animarCangrejo();
+        animarCangrejo();
     }
 
-    // private void animarCangrejo()
-    // {
-    //     if (animador == null)
-    //     {
-    //         return;
-    //     }
+    private void animarCangrejo()
+    {
+        if (animador == null)
+        {
+            return;
+        }
 
-    //     if (!estaTocandoSuelo)
-    //     {
-    //         animador.Play("JugadorSaltando");
-    //     }
-    //     else if (Mathf.Abs(fisica.linearVelocity.x) > umbralCarrera)
-    //     {
-    //         animador.Play("JugadorCorriendo");
-    //     } 
-    //     else
-    //     {
-    //         animador.Play("JugadorParado");
-    //     }
-    // }
+        animador.Play("AnimacionCaminarCangrejo");//como lo unico que hace el cagrejo es caminar, no hay necesidad de hacer un if para ver si esta corriendo o no, siempre va a estar corriendo
+    }
 
     void FixedUpdate()
     {
@@ -66,32 +57,24 @@ public class EnemigoCangrejoHorizontalMovimiento : MonoBehaviour
             return;
         }
 
-        Vector2 posicionObjetivo = movimientoHaciaLosLados ? posicionFinal : posicionInicial;
+        Vector2 posicionObjetivo = movimientoHaciaLaDerecha ? posicionFinal : posicionInicial;
         
         if (Vector2.Distance(fisica.position, posicionObjetivo) <= tolerancia)
         {
-            movimientoHaciaLosLados = !movimientoHaciaLosLados; //si se mueve hacia un lado cambia el movimiento hacia ese lado a falso para que vaya hacia el lado contrario
+            movimientoHaciaLaDerecha = !movimientoHaciaLaDerecha; //si se mueve hacia un lado cambia el movimiento hacia ese lado a falso para que vaya hacia el lado contrario
         }
         fisica.MovePosition(Vector2.MoveTowards(fisica.position, posicionObjetivo, velocidad * Time.fixedDeltaTime));
 
-        // OrientarSprite();
+        OrientarSprite();
     }
 
-    // private void OrientarSprite()
-    // {
-    //     if (renderizador == null)
-    //     {
-    //         return;
-    //     }
+    private void OrientarSprite()
+    {
+        if (renderizador == null) return;
 
-    //     //gira si va hacia la izquierda
-    //     if (fisica.linearVelocity.x > 0)
-    //     {
-    //         renderizador.flipX = false;
-    //     }
-    //     else if (fisica.linearVelocity.x < 0)
-    //     {
-    //         renderizador.flipX = true;
-    //     }
-    // }
+        if (movimientoHaciaLaDerecha)    // va hacia posicionFinal, ademas uso el boolean movimientoHaciaLaDerecha porque el cangrejo no usa fisica.velocity.x para moverse, sino que usa MovePosition, por lo que no puedo usar la velocidad para saber hacia donde se mueve
+            renderizador.flipX = false;
+        else                            // va hacia posicionInicial
+            renderizador.flipX = true;
+    }
 }
