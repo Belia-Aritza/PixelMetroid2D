@@ -77,4 +77,18 @@ public class EnemigoCangrejoHorizontalMovimiento : MonoBehaviour
         else                            // va hacia posicionInicial
             renderizador.flipX = true;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(!collision.gameObject.CompareTag("Player")) return;
+
+        if (collision.gameObject.TryGetComponent(out MovimientoJugador jugador))
+        {
+            jugador.ReaparecerJugador();
+        }
+        else
+        {
+            Debug.LogError("El objeto Player necesita ControlJugador en la raíz)");
+        }
+    }
 }

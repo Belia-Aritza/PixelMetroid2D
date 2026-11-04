@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class ControlEnemigoCangrejoHorizontal : MonoBehaviour
+public class ControlEnemigoCangrejoVertical : MonoBehaviour
 {
     [Header("Movimiento")]
     public float velocidad = 2f;
@@ -47,5 +47,19 @@ public class ControlEnemigoCangrejoHorizontal : MonoBehaviour
             movimientoHaciaArriva = !movimientoHaciaArriva; //si se mueve hacia arriva cambia el movimiento hacia arriva a falso para que vaya hacia abajo y al revés
         }
         fisica.MovePosition(Vector2.MoveTowards(fisica.position, posicionObjetivo, velocidad * Time.fixedDeltaTime));
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(!collision.gameObject.CompareTag("Player")) return;
+
+        if (collision.gameObject.TryGetComponent(out MovimientoJugador jugador))
+        {
+            jugador.ReaparecerJugador();
+        }
+        else
+        {
+            Debug.LogError("El objeto Player necesita ControlJugador en la raíz)");
+        }
     }
 }

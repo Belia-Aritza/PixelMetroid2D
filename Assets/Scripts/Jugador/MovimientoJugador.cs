@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -28,6 +29,8 @@ public class MovimientoJugador : MonoBehaviour
     private Boolean estaTocandoSuelo;
     private float logitudRayCast = 1.6f;
     private float umbralCarrera = 0.1f;
+
+    [SerializeField]private Transform spawnPoint;
 
 
     //Para acceder al mapa de acciones del inputAction.
@@ -154,5 +157,19 @@ public class MovimientoJugador : MonoBehaviour
         {
             renderizador.flipX = true;
         }
+    }
+
+    public void ReaparecerJugador()
+    {
+        if (spawnPoint == null)
+        {
+            Debug.LogError("Asigna un punto de spawn para el jugador", this);
+            enabled = false;
+            return;
+        }
+        // Reinicia la posición del jugador al reaparecer
+        fisica.position = (Vector2)spawnPoint.position;
+        // Reinicia la velocidad del jugador al reaparecer
+        fisica.linearVelocity = Vector2.zero;
     }
 }
