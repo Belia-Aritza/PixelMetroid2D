@@ -727,6 +727,7 @@ MonoBehaviour:
     m_Bits: 64
   fuerzaImpulso: 5
   spawnPoint: {fileID: 0}
+  puntuacion: 0
 --- !u!50 &524754930
 Rigidbody2D:
   serializedVersion: 5
@@ -1668,6 +1669,7 @@ MonoBehaviour:
     m_Bits: 64
   fuerzaImpulso: 10
   spawnPoint: {fileID: 1133268401}
+  puntuacion: 0
 --- !u!95 &720282348
 Animator:
   serializedVersion: 7
@@ -1810,11 +1812,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9215954649753178003, guid: 2d50915b11d3f7078ac2711f425cd485, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.25
+      value: 28.12
       objectReference: {fileID: 0}
     - target: {fileID: 9215954649753178003, guid: 2d50915b11d3f7078ac2711f425cd485, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.47
+      value: 3.56
       objectReference: {fileID: 0}
     - target: {fileID: 9215954649753178003, guid: 2d50915b11d3f7078ac2711f425cd485, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1999,17 +2001,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1155078043}
     m_Modifications:
+    - target: {fileID: 5896358726543054843, guid: 2d50915b11d3f7078ac2711f425cd485, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 25.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896358726543054843, guid: 2d50915b11d3f7078ac2711f425cd485, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.78
+      objectReference: {fileID: 0}
     - target: {fileID: 8494557322595322869, guid: 2d50915b11d3f7078ac2711f425cd485, type: 3}
       propertyPath: m_Name
       value: Orbe (1)
       objectReference: {fileID: 0}
     - target: {fileID: 9215954649753178003, guid: 2d50915b11d3f7078ac2711f425cd485, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.11
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9215954649753178003, guid: 2d50915b11d3f7078ac2711f425cd485, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.42
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9215954649753178003, guid: 2d50915b11d3f7078ac2711f425cd485, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3818,17 +3828,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1155078043}
     m_Modifications:
+    - target: {fileID: 5896358726543054843, guid: 2d50915b11d3f7078ac2711f425cd485, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 41.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896358726543054843, guid: 2d50915b11d3f7078ac2711f425cd485, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.31
+      objectReference: {fileID: 0}
     - target: {fileID: 8494557322595322869, guid: 2d50915b11d3f7078ac2711f425cd485, type: 3}
       propertyPath: m_Name
       value: Orbe (3)
       objectReference: {fileID: 0}
     - target: {fileID: 9215954649753178003, guid: 2d50915b11d3f7078ac2711f425cd485, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 42.67
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9215954649753178003, guid: 2d50915b11d3f7078ac2711f425cd485, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.56
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9215954649753178003, guid: 2d50915b11d3f7078ac2711f425cd485, type: 3}
       propertyPath: m_LocalPosition.z
@@ -18551,17 +18569,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1155078043}
     m_Modifications:
+    - target: {fileID: 5896358726543054843, guid: 2d50915b11d3f7078ac2711f425cd485, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.78
+      objectReference: {fileID: 0}
     - target: {fileID: 8494557322595322869, guid: 2d50915b11d3f7078ac2711f425cd485, type: 3}
       propertyPath: m_Name
       value: Orbe
       objectReference: {fileID: 0}
     - target: {fileID: 9215954649753178003, guid: 2d50915b11d3f7078ac2711f425cd485, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.52087975
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9215954649753178003, guid: 2d50915b11d3f7078ac2711f425cd485, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4890901
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9215954649753178003, guid: 2d50915b11d3f7078ac2711f425cd485, type: 3}
       propertyPath: m_LocalPosition.z

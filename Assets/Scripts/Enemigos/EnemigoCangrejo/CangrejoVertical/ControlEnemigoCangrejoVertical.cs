@@ -55,7 +55,8 @@ public class ControlEnemigoCangrejoVertical : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent(out MovimientoJugador jugador))
         {
-            jugador.ReaparecerJugador();
+            //jugador.ReaparecerJugador();
+            jugador.QuitarVida();
         }
         else
         {
