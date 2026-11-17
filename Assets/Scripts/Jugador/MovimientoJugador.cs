@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -41,11 +42,15 @@ public class MovimientoJugador : MonoBehaviour
 
     [SerializeField, Min(0.01f)] private float segundosInvulnerable = 1f; // Tiempo que el jugador es invulnerable después de perder una vida
 
-    [Header("Tiempo")] 
+    [Header("Tiempo")]
     private float tiempoInicio;
     private float tiempoReal;
     [SerializeField] private int tiempoLimiteNivel = 100; // Tiempo límite en segundos
     [SerializeField] private float tiempoEmpleado; // Tiempo transcurrido desde el inicio del nivel
+
+    [Header("Canvas")]
+    [SerializeField] private Canvas canvasInterfaz; // Referencia al script ControlHUD para actualizar el HUD
+    private ControlHUD hud; // Referencia al script ControlHUD para actualizar el HUD
 
     //Para acceder al mapa de acciones del inputAction.
 
@@ -69,7 +74,7 @@ public class MovimientoJugador : MonoBehaviour
 
         tiempoInicio = Time.time; // Guardar el tiempo de inicio del nivel
 
-
+        InicializaHUD();
     }
 
     // Update is called once per frame
@@ -82,6 +87,33 @@ public class MovimientoJugador : MonoBehaviour
         SaltoJugador();
 
         animarJugador();
+
+        // Actualizar el HUD con la cantidad de power-ups restantes
+        hud.SetPowerUp(GameObject.FindGameObjectsWithTag("PowerUp").Length);
+
+    }
+
+    private void InicializaHUD()
+    {
+        if (canvasInterfaz != null)
+        {
+            hud = canvasInterfaz.GetComponent<ControlHUD>();
+        }
+        else
+        {
+            Debug.LogError("Asigna el objeto Canvas con el controlHUD al atributo Canvas de Jugador");
+        }
+
+        if (hud != null)
+        {
+            hud.SetVidas(vidas);
+            hud.SetPowerUp(GameObject.FindGameObjectsWithTag("PowerUp").Length);
+            hud.SetTiempo(tiempoLimiteNivel);
+        }
+        else
+        {
+            Debug.LogError("Asigna el objeto Canvas con el controlHUD al atributo Canvas de Jugador");
+        }
     }
 
     private void comprobarFinJuegoTiempo()
@@ -89,6 +121,8 @@ public class MovimientoJugador : MonoBehaviour
 
         tiempoReal = Time.time - tiempoInicio; // Calcular el tiempo transcurrido desde el inicio del nivel
         tiempoEmpleado = Mathf.FloorToInt(tiempoReal); // Convertir el tiempo transcurrido a un valor entero
+        int segundosRestantes = tiempoLimiteNivel - (int)tiempoReal; // Calcular los segundos restantes
+        hud.SetTiempo(segundosRestantes); // Actualizar el HUD con el tiempo restante
         if (tiempoEmpleado >= tiempoLimiteNivel)
         {
             FinJuego();
@@ -229,25 +263,31 @@ public class MovimientoJugador : MonoBehaviour
 
     public void QuitarVida()
     {
-        if (vulnerable)
+
+        if (!vulnerable)
         {
-            vulnerable = false; // El jugador se vuelve invulnerable temporalmente
-
-            vidas--;
-
-            if (renderizador != null)
-            {
-                renderizador.color = Color.blue; // Cambia el color del sprite a azul para indicar que el jugador ha perdido una vida
-            }
-
-            if (vidas <= 0)
-            {
-                FinJuego();
-                return;
-            }
-
-            Invoke(nameof(HacerVulnerable), segundosInvulnerable); // Llama a HacerVulnerable después de 1 segundo
+            return; // Si el jugador es invulnerable, no se quita vida
         }
+
+        vulnerable = false; // El jugador se vuelve invulnerable temporalmente
+
+        vidas--;
+
+        hud.SetVidas(vidas); // Actualiza el HUD con la nueva cantidad de vidas
+
+        if (renderizador != null)
+        {
+            renderizador.color = Color.blue; // Cambia el color del sprite a azul para indicar que el jugador ha perdido una vida
+        }
+
+        if (vidas <= 0)
+        {
+            FinJuego();
+            return;
+        }
+
+        Invoke(nameof(HacerVulnerable), segundosInvulnerable); // Llama a HacerVulnerable después de 1 segundo
+
 
     }
 

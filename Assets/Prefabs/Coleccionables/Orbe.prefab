@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56bc517d16b1f33a8b957d011d82b66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ControlPowerUp
+  cantidad: 2
 --- !u!1 &8494557322595322869
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,7 +176,7 @@ GameObject:
   - component: {fileID: 9215954649753178003}
   m_Layer: 0
   m_Name: Orbe
-  m_TagString: Untagged
+  m_TagString: PowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

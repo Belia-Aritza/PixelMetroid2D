@@ -14,7 +14,6 @@ public class ControlPowerUp : MonoBehaviour
             //LLamamos al metodo IncrementarPuntos del script MovimientoJugador para aumentar la puntuación del jugador
             jugador.IncrementarPuntos(cantidad);
             Destroy(gameObject);
-
         }
         else
         {
