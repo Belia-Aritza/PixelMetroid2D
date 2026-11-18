@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4041130519942364102}
   m_Layer: 0
   m_Name: power-up-1
-  m_TagString: Untagged
+  m_TagString: PowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 9215954649753178003}
   m_Layer: 0
   m_Name: Orbe
-  m_TagString: PowerUp
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
