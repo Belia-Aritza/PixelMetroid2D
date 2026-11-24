@@ -2,6 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 
@@ -54,6 +55,14 @@ public class MovimientoJugador : MonoBehaviour
 
     //Para acceder al mapa de acciones del inputAction.
 
+    private ControlDatosJuego controlDatosJuego;
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip saltoSonido;
+    [SerializeField] private AudioClip quitarVidaSonido;
+    private AudioSource efectoSonido;
+
+
     //Se ejecuta cuando el script este en la escena, se usa cuando tiene que acceder otro gameObject distinto al que tiene el script
     //ejemplo los sonidos
     private void Awake()
@@ -61,6 +70,7 @@ public class MovimientoJugador : MonoBehaviour
         fisica = GetComponent<Rigidbody2D>();
         renderizador = GetComponent<SpriteRenderer>();
         animador = GetComponent<Animator>();
+        efectoSonido = GetComponent<AudioSource>(); // NUEVO: busca el AudioSource del jugador
 
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -75,6 +85,16 @@ public class MovimientoJugador : MonoBehaviour
         tiempoInicio = Time.time; // Guardar el tiempo de inicio del nivel
 
         InicializaHUD();
+
+        controlDatosJuego = ControlDatosJuego.Instancia;
+        if (controlDatosJuego == null)
+        {
+            Debug.LogError("Añade Control Juego al nivel");
+        }
+        else
+        {
+            controlDatosJuego.ReiniciarPartida();
+        }
     }
 
     // Update is called once per frame
@@ -216,6 +236,11 @@ public class MovimientoJugador : MonoBehaviour
         {
             fisica.AddForce(Vector2.up * fuerzaImpulso, ForceMode2D.Impulse);
 
+            if (saltoSonido != null)
+            {
+                efectoSonido.PlayOneShot(saltoSonido);
+            }
+
         }
         saltoPendiente = false;
     }
@@ -273,6 +298,11 @@ public class MovimientoJugador : MonoBehaviour
 
         vidas--;
 
+        if (quitarVidaSonido != null)
+        {
+            efectoSonido.PlayOneShot(quitarVidaSonido);
+        }
+
         hud.SetVidas(vidas); // Actualiza el HUD con la nueva cantidad de vidas
 
         if (renderizador != null)
@@ -302,7 +332,31 @@ public class MovimientoJugador : MonoBehaviour
 
     public void FinJuego()
     {
-        Debug.Log("Juego finalizado");
-        gameObject.SetActive(false);
+        // Debug.Log("Juego finalizado");
+        // gameObject.SetActive(false);
+
+        if (controlDatosJuego == null)
+        {
+            Debug.LogError("Falta el objeto control datos juego para poder guardar el resultado de la partida", this);
+            return;
+        }
+
+        controlDatosJuego.GuardarResultado(false, 0);
+        SceneManager.LoadScene("FinNivel");
+        
+        
+    }
+
+    public void Victoria()
+    {
+        puntuacion = vidas * 100 + (int)Mathf.Max(0, tiempoLimiteNivel - tiempoEmpleado);
+
+        //paramos el movimiento del jugador
+        saltoPendiente = false;
+        fisica.linearVelocity = Vector2.zero;
+
+        //guardamos la puntuacion y lanzamos la escena de fin de nivel
+        controlDatosJuego.GuardarResultado(true, puntuacion);
+        SceneManager.LoadScene("FinNivel");
     }
 }
